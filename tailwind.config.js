@@ -25,4 +25,12 @@ module.exports = {
       "3/4": "75%",
     },
   },
+  variants: {
+    textColor: ["responsive", "hover", "focus", "group-focus", "group-hover"],
+    font: ["responsive", "hover", "focus", "group-focus", "group-hover"],
+    width: ["responsive", "hover", "focus", "group-focus", "group-hover"],
+    height: ["responsive", "hover", "focus", "group-focus", "group-hover"],
+    maxWidth: ["responsive", "hover", "focus", "group-focus", "group-hover"],
+    scale: ["responsive", "hover", "focus", "group-focus", "group-hover"],
+  },
 };
