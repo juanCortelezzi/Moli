@@ -1,12 +1,15 @@
 import { useState, useContext } from "react";
+import { CartContext } from "./itemContext";
 
 export default function Card(props: {
-  product_data: { title: string; description: string; image: string; value: number };
+  product_data: { title: string; description: string; image: string; price: number };
 }) {
+  const { cartItems, setCartItems } = useContext(CartContext);
+
   const [count, setCount] = useState(0);
 
   const { product_data } = props;
-  const { title, description, value, image } = product_data;
+  const { title, description, price, image } = product_data;
 
   const handlePlus = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -22,7 +25,23 @@ export default function Card(props: {
   const handleCart = (e: React.MouseEvent) => {
     e.preventDefault();
     if (count <= 0) return;
-    console.log(`${title}, ${count}, $${count * value}`);
+    let itemExists: [Boolean, number] = [false, 0];
+    for (let i = 0; i < cartItems.length; i++) {
+      if (cartItems[i].title === title) {
+        itemExists = [true, i];
+      }
+    }
+
+    if (itemExists[0] === true) {
+      const newCart = [...cartItems];
+      const oldItem = cartItems[itemExists[1]];
+      const newItem = cartItems[itemExists[1]];
+      newItem.quantity = count + oldItem.quantity;
+      newCart.splice(itemExists[1], 1);
+      setCartItems([...newCart, newItem]);
+    } else {
+      setCartItems([...cartItems, { title: title, quantity: count, price: price }]);
+    }
     setCount(0);
   };
 
@@ -33,7 +52,7 @@ export default function Card(props: {
       <div className="h-56 px-6 py-4 bg-gray-300">
         <div className="h-1/4 flex flex-row flex-no-wrap justify-between align-center">
           <h2 className="font-bold text-2xl">{title}</h2>
-          <p className="font-bold text-xl text-gray-800">${value}</p>
+          <p className="font-bold text-xl text-gray-800">${price}</p>
         </div>
         <div className="h-3/4 flex flex-col justify-between align-center">
           <p className="text-gray-700 text-base overflow-hidden">{description}</p>

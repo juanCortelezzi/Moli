@@ -2,18 +2,17 @@ import { CartContext } from "./itemContext";
 import { useContext } from "react";
 
 const Cart = () => {
-  const { cartItems, setCartItems } = useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
 
   return (
     <div>
-      <button
-        onClick={() => {
-          setCartItems([...cartItems, "juanba"]);
-        }}
-      >
-        press me
-      </button>
-      <p>{cartItems}</p>
+      {cartItems.map((i) => {
+        return (
+          <p key={i.title}>
+            {i.title}, {i.quantity}
+          </p>
+        );
+      })}
     </div>
   );
 };
