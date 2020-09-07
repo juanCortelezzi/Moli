@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 export default function Card(props: {
   product_data: { title: string; description: string; image: string; value: number };
@@ -22,8 +22,8 @@ export default function Card(props: {
   const handleCart = (e: React.MouseEvent) => {
     e.preventDefault();
     if (count <= 0) return;
-    setCount(0);
     console.log(`${title}, ${count}, $${count * value}`);
+    setCount(0);
   };
 
   return (
