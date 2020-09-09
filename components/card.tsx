@@ -49,13 +49,13 @@ export default function Card(props: {
     <div className="group block max-w-sm rounded shadow-lg m-4 flex-grow-1">
       <img className="w-full h-128 object-cover" src={image} alt={title} />
 
-      <div className="h-56 px-6 py-4 bg-gray-300">
-        <div className="h-1/4 flex flex-row flex-no-wrap justify-between align-center">
+      <div className="h-72 sm:h-56 flex flex-col px-6 py-4 bg-gray-300">
+        <div className="h-1/4 flex flex-col sm:flex-row flex-no-wrap justify-between items-center">
           <h2 className="font-bold text-2xl">{title}</h2>
           <p className="font-bold text-xl text-gray-800">${price}</p>
         </div>
         <div className="h-3/4 flex flex-col justify-between align-center">
-          <p className="text-gray-700 text-base overflow-hidden">{description}</p>
+          <p className="text-gray-700 text-base my-auto overflow-hidden">{description}</p>
           <div className="flex items-center justify-around">
             <div className="grid grid-cols-3 divide-x divide-blue-700">
               <button className="text-lg text-center font-medium px-4" onClick={handleMinus}>
