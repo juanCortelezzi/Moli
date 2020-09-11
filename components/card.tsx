@@ -37,10 +37,10 @@ export default function Card(props: {
       const oldItem = cartItems[itemExists[1]];
       const newItem = cartItems[itemExists[1]];
       newItem.quantity = count + oldItem.quantity;
-      newCart.splice(itemExists[1], 1);
-      setCartItems([...newCart, newItem]);
+      newCart.splice(itemExists[1], 1, newItem);
+      setCartItems(newCart);
     } else {
-      setCartItems([...cartItems, { title: title, quantity: count, price: price }]);
+      setCartItems([...cartItems, { title, quantity: count, price, image }]);
     }
     setCount(0);
   };
